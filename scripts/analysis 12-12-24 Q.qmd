@@ -1,0 +1,71 @@
+---
+title: "Results"
+author: "Sarah E. Stegall-Rodriguez"
+format: html
+editor: visual
+# execute:
+#  echo: false
+---
+
+```{r}
+#| include: false
+library(tidyr)
+library(haven)
+library(dplyr)
+library(labelled)
+library(descr)
+```
+
+```{r}
+# Load the data
+data <- read_sav("SESR 1 - II Group Discussion from Fall 2022 Working.sav")
+```
+
+```{r}
+codebook <- look_for(data)
+View(codebook)
+```
+
+## Explore variables using frequency tables
+
+```{r}
+#| label: structure
+freq(as.ordered(data$structure), plot = FALSE)
+```
+
+```{r}
+freq(as.ordered(data$structure), plot = FALSE)
+```
+
+```{r}
+freq(as.ordered(data$structure), plot = FALSE)
+```
+
+```{r}
+freq(as.ordered(data$SVO_type), plot = FALSE)
+```
+
+## Data Manipulation
+
+```{r}
+# Convert labeled variables to factors
+data <- data %>%
+  mutate(across(where(is.labelled), as_factor))
+
+# Filter data based on exclusion criteria
+filtered_data <- data[data$Include == "Include", ]
+
+# View(data)
+```
+
+```{r}
+str(data)
+```
+
+```{r}
+summary(data)
+```
+
+```{r}
+glimpse(data)
+```
